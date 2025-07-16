@@ -1,0 +1,31 @@
+<core:FragmentDefinition 
+    xmlns="sap.m" 
+    xmlns:core="sap.ui.core">
+  <Dialog 
+      id="ProductVHDialog"
+      title="Sélectionner un Code Article"
+      draggable="true" 
+      resizable="true"
+      contentWidth="20%"
+      contentHeight="40%"
+      afterClose=".onCloseValueHelp">
+    <VBox id="_IDGenVBox">
+     
+      <Table 
+          id="productVHTable"
+          mode="SingleSelectLeft"
+          includeItemInSelection="true"
+          selectionChange=".onProductVHSelect">
+        <columns>
+          <Column id="_IDGenC3olumn">
+            <Text id="_IDGen5Text5" text="Code Article"/>
+          </Column>
+          <!-- Ajoute d'autres colonnes ici si nécessaire -->
+        </columns>
+      </Table>
+    </VBox>
+    <endButton>
+      <Button id="_IDGenButton4" text="Fermer" press=".onCloseValueHelp"/>
+    </endButton>
+  </Dialog>
+</core:FragmentDefinition>

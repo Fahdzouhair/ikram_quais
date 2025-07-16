@@ -1,0 +1,251 @@
+<mvc:View
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:m="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:f="sap.f"
+    xmlns:fb="sap.ui.comp.filterbar"
+    xmlns:svm="sap.ui.comp.smartvariants"
+    controllerName="zquaisofa.controller.Quais"
+    height="100%"
+>
+    <f:DynamicPage id="_IDGenDynamicPage" headerExpanded="true">
+        
+        <!-- Titre de la page -->
+        <f:title>
+            <f:DynamicPageTitle id="_IDGenDynamicPageTitle">
+                <f:heading>
+                    <m:Title
+                        id="_IDGenTitle"
+                        text="Gestion des Quais"
+                        level="H1"
+                    />
+                </f:heading>
+            </f:DynamicPageTitle>
+        </f:title>
+        
+        <!-- Header : Filtre -->
+        <f:header>
+            <f:DynamicPageHeader id="_IDGenDynamicPageHeader">
+                <f:content>
+                    <fb:FilterBar
+                        id="filterbar"
+                        persistencyKey="LogIRIUMPersistencyKey"
+                        useToolbar="false"
+                        search=".onSearch"
+                    >
+                        <fb:filterGroupItems>
+                            <fb:FilterGroupItem
+                                id="_IDGenFilterGroupItem"
+                                name="code_article"
+                                label="Code Article"
+                                groupName="Général"
+                                visibleInFilterBar="true"
+                            >
+                                <fb:control>
+                                    <m:Input
+                                        id="filtreCodeArticle"
+                                        showValueHelp="true"
+                                        valueHelpRequest=".onValueHelpRequest"
+                                    />
+                                </fb:control>
+                            </fb:FilterGroupItem>
+                            <fb:FilterGroupItem
+                                id="_IDGenFilterGroupItem1"
+                                name="division"
+                                label="Division"
+                                groupName="Général"
+                                visibleInFilterBar="true"
+                            >
+                                <fb:control>
+                                    <m:Input
+                                        id="filtreDivision"
+                                        showValueHelp="true"
+                                        valueHelpRequest=".onValueHelpRequest"
+                                    />
+                                </fb:control>
+                            </fb:FilterGroupItem>
+                            <fb:FilterGroupItem
+                                id="_IDGenFilterGroupItem2"
+                                name="magasin"
+                                label="Magasin"
+                                groupName="Général"
+                                visibleInFilterBar="true"
+                            >
+                                <fb:control>
+                                    <m:Input
+                                        id="filtreMagasin"
+                                        showValueHelp="true"
+                                        valueHelpRequest=".onValueHelpRequest"
+                                    />
+                                </fb:control>
+                            </fb:FilterGroupItem>
+                        </fb:filterGroupItems>
+                    </fb:FilterBar>
+                </f:content>
+            </f:DynamicPageHeader>
+        </f:header>
+        
+        <!-- Contenu principal -->
+        <f:content>
+            <!-- Table sap.m.Table avec lazy loading -->
+            <m:Table
+                id="table"
+                items="{/ZCDS_QUAIS_SPE_FF}"
+                mode="SingleSelectLeft"
+                growing="true"
+                growingThreshold="100"
+                growingScrollToLoad="true"
+                width="auto"
+                ariaLabelledBy="title"
+            >
+                <!-- Barre d'actions dans le headerToolbar -->
+                <m:headerToolbar>
+                    <m:OverflowToolbar
+                        id="_IDGenOverflowToolbar1"
+                        style="Clear"
+                        class="headerPadding"
+                    >
+                        <m:ToolbarSpacer id="_IDGenToolbarSpacer" />
+                        <m:Button
+                            id="_IDGenButton2"
+                            text="Modifier"
+                            press=".onEditPress"
+                            type="Emphasized"
+                            visible="{= !${viewModel>/editMode}}"
+                        />
+                        <m:Button
+                            id="_IDGenButton3"
+                            class="sapUiTinyMargin"
+                            text="Valider"
+                            press=".onSavePress"
+                            type="Accept"
+                            visible="{viewModel>/editMode}"
+                        />
+                        <m:Button
+                            id="_IDGenButton"
+                            class="sapUiTinyMargin"
+                            text="Annuler"
+                            press=".onCancelPress"
+                            type="Reject"
+                            visible="{viewModel>/editMode}"
+                        />
+                        <m:Button
+                            id="_IDGenButton1"
+                            icon="sap-icon://action-settings"
+                            tooltip="show context of latest selection item"
+                            press=".onColumnSettingsPress"
+                        />
+                    </m:OverflowToolbar>
+                </m:headerToolbar>
+                
+                <!-- Définition des colonnes (entêtes) -->
+                <m:columns>
+                    <m:Column id="_IDGenColumn">
+                        <m:Text id="_IDGenText4" text="Code Article" />
+                    </m:Column>
+                    <m:Column id="_IDGenColumn1" width="8%">
+                        <m:Text id="_IDGenText5" text="Division" />
+                    </m:Column>
+                    <m:Column id="_IDGenColumn2" width="8%">
+                        <m:Text id="_IDGenText6" text="Magasin" />
+                    </m:Column>
+                    <m:Column id="_IDGenColumn3" width="15%">
+                        <m:Text id="_IDGenText7" text="Stock" />
+                    </m:Column>
+                    <m:Column id="_IDGenColumn4" width="6%">
+                        <m:Text id="_IDGenText8" text="Quai 1" />
+                    </m:Column>
+                    <m:Column id="_IDGenColumn5" width="6%">
+                        <m:Text id="_IDGenText9" text="Quai 2" />
+                    </m:Column>
+                    <m:Column id="_IDGenColumn6" width="6%">
+                        <m:Text id="_IDGenText10" text="Quai 3" />
+                    </m:Column>
+                    <m:Column id="_IDGenColumn7" width="6%">
+                        <m:Text id="_IDGenText11" text="Quai 4" />
+                    </m:Column>
+                </m:columns>
+                
+                <!-- Définition du template d'une ligne (ColumnListItem) -->
+                <m:items>
+                    <m:ColumnListItem id="_IDGenColumnListItem">
+                        <m:cells>
+                            <!-- Code Article -->
+                            <m:Text id="_IDGenText3"
+                                text="{Codearticle}"
+                                wrapping="false"
+                            />
+                            <!-- Division -->
+                            <m:Text id="_IDGenText2"
+                                text="{Division}"
+                                wrapping="false"
+                            />
+                            <!-- Magasin -->
+                            <m:Text id="_IDGenText1"
+                                text="{Magasin}"
+                                wrapping="false"
+                            />
+                            <!-- Stock -->
+                            <m:Text id="_IDGenText"
+                                text="{Stock}"
+                                wrapping="false"
+                            />
+                            <!-- Quai 1 -->
+                            <m:Select
+                                id="_IDGenSelect"
+                                items="{priorityModel>/priorities}"
+                                selectedKey="{Quai1}"
+                                change=".onQuaiChange"
+                                enabled="{viewModel>/editMode}"
+                            >
+                                <core:Item id="_IDGenItem3"
+                                    key="{priorityModel>key}"
+                                    text="{priorityModel>text}"
+                                />
+                            </m:Select>
+                            <!-- Quai 2 -->
+                            <m:Select
+                                id="_IDGenSelect3"
+                                items="{priorityModel>/priorities}"
+                                selectedKey="{Quai2}"
+                                change=".onQuaiChange"
+                                enabled="{viewModel>/editMode}"
+                            >
+                                <core:Item id="_IDGenItem2"
+                                    key="{priorityModel>key}"
+                                    text="{priorityModel>text}"
+                                />
+                            </m:Select>
+                            <!-- Quai 3 -->
+                            <m:Select
+                                id="_IDGenSelect2"
+                                items="{priorityModel>/priorities}"
+                                selectedKey="{Quai3}"
+                                change=".onQuaiChange"
+                                enabled="{viewModel>/editMode}"
+                            >
+                                <core:Item id="_IDGenItem1"
+                                    key="{priorityModel>key}"
+                                    text="{priorityModel>text}"
+                                />
+                            </m:Select>
+                            <!-- Quai 4 -->
+                            <m:Select
+                                id="_IDGenSelect1"
+                                items="{priorityModel>/priorities}"
+                                selectedKey="{Quai4}"
+                                change=".onQuaiChange"
+                                enabled="{viewModel>/editMode}"
+                            >
+                                <core:Item id="_IDGenItem"
+                                    key="{priorityModel>key}"
+                                    text="{priorityModel>text}"
+                                />
+                            </m:Select>
+                        </m:cells>
+                    </m:ColumnListItem>
+                </m:items>
+            </m:Table>
+        </f:content>
+    </f:DynamicPage>
+</mvc:View>

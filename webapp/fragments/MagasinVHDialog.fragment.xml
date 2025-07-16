@@ -1,0 +1,33 @@
+<core:FragmentDefinition 
+    xmlns="sap.m" 
+    xmlns:core="sap.ui.core">
+  <Dialog 
+      id="MagasinVHDialog"
+      title="Sélectionner un Magasin"
+      draggable="true" 
+      resizable="true"
+      contentHeight="40%"
+      contentWidth="40%"
+      afterClose=".onCloseValueHelp">
+    <VBox id="_IDGenVBox2">
+     
+      <Table 
+          id="magasinVHTable"
+          mode="SingleSelectLeft"
+          includeItemInSelection="true"
+          selectionChange=".onMagasinVHSelect">
+        <columns>
+          <Column id="_IDGenColumn11">
+            <Text id="_IDGendText8" text="Storage Location"/>
+          </Column>
+          <Column id="_IDGenColumn12">
+            <Text id="_IDGendText9" text="Storage Location Name"/>
+          </Column>
+        </columns>
+      </Table>
+    </VBox>
+    <endButton>
+      <Button id="_IDGenButton6" text="Fermer" press=".onCloseValueHelp"/>
+    </endButton>
+  </Dialog>
+</core:FragmentDefinition>

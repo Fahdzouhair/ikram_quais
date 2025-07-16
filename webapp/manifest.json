@@ -1,0 +1,123 @@
+{
+  "_version": "1.65.0",
+  "sap.app": {
+    "id": "zquaisofa",
+    "type": "application",
+    "i18n": "i18n/i18n.properties",
+    "applicationVersion": {
+      "version": "0.0.1"
+    },
+    "title": "{{appTitle}}",
+    "description": "{{appDescription}}",
+    "resources": "resources.json",
+    "sourceTemplate": {
+      "id": "@sap/generator-fiori:basic",
+      "version": "1.18.0",
+      "toolsId": "ce53ffef-7bdd-4347-9b08-62b0b1dae9b9"
+    },
+    "dataSources": {
+      "ZSB_APP_QUAIS_FF_VAN": {
+        "uri": "/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Annotations(TechnicalName='ZSB_APP_QUAIS_FF_VAN',Version='0001')/$value/",
+        "type": "ODataAnnotation",
+        "settings": {
+          "localUri": "localService/mainService/ZSB_APP_QUAIS_FF_VAN.xml"
+        }
+      },
+      "mainService": {
+        "uri": "/sap/opu/odata/sap/ZSB_APP_QUAIS_FF/",
+        "type": "OData",
+        "settings": {
+          "annotations": [
+            "ZSB_APP_QUAIS_FF_VAN"
+          ],
+          "localUri": "localService/mainService/metadata.xml",
+          "odataVersion": "2.0"
+        }
+      }
+    }
+  },
+  "sap.ui": {
+    "technology": "UI5",
+    "icons": {
+      "icon": "",
+      "favIcon": "",
+      "phone": "",
+      "phone@2": "",
+      "tablet": "",
+      "tablet@2": ""
+    },
+    "deviceTypes": {
+      "desktop": true,
+      "tablet": true,
+      "phone": true
+    }
+  },
+  "sap.ui5": {
+    "flexEnabled": true,
+    "dependencies": {
+      "minUI5Version": "1.130.11",
+      "libs": {
+        "sap.m": {},
+        "sap.ui.core": {}
+      }
+    },
+    "contentDensities": {
+      "compact": true,
+      "cozy": true
+    },
+    "models": {
+      "i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "settings": {
+          "bundleName": "zquaisofa.i18n.i18n"
+        }
+      },
+      "logModel": {
+        "dataSource": "mainService",
+        "preload": true,
+        "settings": {}
+      }
+    },
+    "resources": {
+      "css": [
+        {
+          "uri": "css/style.css"
+        }
+      ]
+    },
+    "routing": {
+      "config": {
+        "routerClass": "sap.m.routing.Router",
+        "controlAggregation": "pages",
+        "controlId": "app",
+        "transition": "slide",
+        "type": "View",
+        "viewType": "XML",
+        "path": "zquaisofa.view",
+        "async": true,
+        "viewPath": "zquaisofa.view"
+      },
+      "routes": [
+        {
+          "name": "RouteQuais",
+          "pattern": ":?query:",
+          "target": [
+            "TargetQuais"
+          ]
+        }
+      ],
+      "targets": {
+        "TargetQuais": {
+          "id": "Quais",
+          "name": "Quais"
+        }
+      }
+    },
+    "rootView": {
+      "viewName": "zquaisofa.view.App",
+      "type": "XML",
+      "id": "App",
+      "async": true
+    }
+  }
+}
